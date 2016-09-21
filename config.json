@@ -1,0 +1,13 @@
+{
+    "sourcedir": "content",
+    "layoutdir": "layouts",
+    "publishdir": "public",
+    "builddrafts": false,
+    "indexes": {
+       "category": "categories",
+       "tag": "tags"
+    },
+    "baseurl": "http://www.danesparza.net/",
+    "canonifyurls":"false",
+    "title": "The Blog of Dan Esparza"
+}

@@ -1,0 +1,170 @@
+body
+{
+	padding: 30px;
+	font-size: 13px;
+	line-height: 1.7;
+	color: #444;
+
+	background-image: url(/img/squairy_light.png);
+	background-size: auto;
+	background-repeat: repeat repeat;
+}
+
+/* Bootstrap pre/code overrides */
+pre {
+    overflow-x: auto;
+	overflow-wrap: normal;
+}
+
+pre code {
+    overflow-wrap: normal;
+    white-space: pre;
+	overflow-x: auto;
+}
+
+.navbar
+{
+	margin-bottom: 30px;
+	padding: 5px;
+}
+
+.navbar-brand
+{
+  background: url(/img/logo-small.png) no-repeat 5px center;
+  height: 50px;
+  padding-left: 80px;
+}
+
+h1
+{
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 600;
+	font-size: 28px;
+}
+
+h5
+{
+	background-color: #eef;
+    padding: 5px;
+}
+
+article.post
+{
+	margin-bottom: 50px;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0,121,255,0)),to(rgba(0,121,255,0.04)));
+	background-image: -moz-linear-gradient(top,rgba(0,121,255,0),rgba(0,121,255,0.04));
+	padding: 50px;
+	border: 1px solid #c9c9c9;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+article.post header
+{
+	padding-bottom: 20px;
+}
+
+article.post header h1 a
+{
+	text-decoration: none;
+	color: #222;
+}
+
+article.post header h1 a:hover
+{
+	color: #428bca;
+}
+
+article.post header .post-meta
+{
+	color: #aaa;
+	border-bottom: 1px dotted #ebebeb;
+	padding-bottom: 20px;
+}
+
+article.post p
+{
+	color: #444;
+}
+
+article.post pre
+{
+	background: #eff3f7;
+	border: 1px solid #e1e6ec;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 12px;
+	line-height: 13px;
+	padding: 12px 17px;
+
+	overflow-wrap: normal;
+	overflow-x: auto;
+}
+
+section.comments
+{
+	padding: 20px 0;
+}
+
+.archive-prompt
+{
+	margin-bottom: 3em;
+}
+
+.archive-page
+{
+	margin-bottom: 50px;
+	background-image: -webkit-gradient(linear,left top,left bottom,from(rgba(0,121,255,0)),to(rgba(0,121,255,0.04)));
+	background-image: -moz-linear-gradient(top,rgba(0,121,255,0),rgba(0,121,255,0.04));
+	padding: 50px;
+	border: 1px solid #c9c9c9;
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+footer
+{
+	color: #aaa;
+}
+
+/*	Media query adjustments	*/
+@media (max-width: 480px) 
+{
+	body
+	{
+		padding: 5px;
+	}
+
+	.navbar
+	{
+		margin-bottom: 20px;
+		padding: 0;
+	}
+
+	article.post
+	{
+		background-image: none;
+		padding: 10px;
+		border-bottom: none;
+	}
+}
+
+@media print
+{
+	body
+	{
+		padding: 5px;
+	}
+	
+	article.post
+	{
+		margin-bottom: 10px;
+		background-image: none;
+		padding: 10px;
+		border: none;
+		background-color: #fff;
+	}
+}

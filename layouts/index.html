@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{ template "chrome/head.html" . }}
+
+    <title>{{ .Site.Title }}</title>
+</head>
+
+<body>
+
+    <div class="container">
+
+		{{ template "chrome/nav.html" . }}
+
+		<div>
+		{{ range first 3 .Data.Pages }}
+		    {{ .Render "summary"}}
+		{{ end }}
+		</div>
+
+		<div class="archive-prompt hidden-print row">
+		    <div class="col-md-12 text-center">
+		        <a class="btn btn-default btn-lg" href="/post">Read more posts in the archive</a>
+		    </div>
+		</div>
+
+{{ template "chrome/footer.html" }}
