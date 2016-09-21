@@ -1,0 +1,21 @@
+dependencies:
+  pre:
+    # Our static site builder
+    - go get -v github.com/spf13/hugo
+  override:    
+    # Build the site
+    hugo
+test:
+  post:
+    - echo .
+deployment:
+  hub:
+    branch: master
+    commands:
+      # Prep Cloudflare for deployment
+      # - "curl -X PATCH \"https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/settings/development_mode\" -H \"X-Auth-Email: $CLOUDFLARE_EMAIL\" -H \"X-Auth-Key: $CLOUDFLARE_API_KEY\" -H \"Content-Type: application/json\" --data '{\"value\":\"on\"}'"      
+      # Push to S3. This expects the environment variables 
+      # AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to be set
+      # See http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-environment 
+      # for more information
+      - aws s3 sync public/ s3://$S3_DEPLOY_BUCKET --delete --quiet
