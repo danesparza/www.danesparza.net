@@ -9,5 +9,9 @@
     },
     "baseurl": "http://www.danesparza.net/",
     "canonifyurls":"false",
-    "title": "The Blog of Dan Esparza"
+    "title": "The Blog of Dan Esparza",
+    "sitemap": {
+        "changefreq": "monthly",
+        "filename": "sitemap.xml"
+    }
 }
