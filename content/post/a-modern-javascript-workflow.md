@@ -114,4 +114,4 @@ When I want to do a full minimized release build, I just run:
 
 
 ### Next up...
-Next, I'll be checking out [webpack](https://webpack.github.io/) for even more fancy features!
+Next, I'll be checking out [webpack](https://webpack.github.io/) to replace Browserify for even more fancy features!
