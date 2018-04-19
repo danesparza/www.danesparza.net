@@ -1,0 +1,64 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.9.4
+    steps:
+      - checkout
+
+      # Execute the build process
+      - run:
+          name: Fetch and install Hugo
+          command: go get -v github.com/spf13/hugo
+      
+      - run: 
+          name: Build the site
+          command: hugo
+
+      - run: 
+          name: Emit build number
+          command: echo "{\"version\":$CIRCLE_BUILD_NUM}" >> public/build.json
+
+      # Persist the built (unzipped) content to the workspace
+      - persist_to_workspace:
+          root: .
+          paths:
+            - public
+      
+  deploy:
+    docker:
+      - image: circleci/python:3.4-jessie-browsers
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+
+      - run:
+          name: Set path
+          command: export PATH=~/bin:$PATH
+
+      - run:
+          name: Install AWS tools
+          command: |            
+            curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+            unzip awscli-bundle.zip
+            ./awscli-bundle/install -b ~/bin/aws
+      
+      # This expects the environment variables
+      # AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to be set
+      # See http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html#cli-environment 
+      # for more information
+      # NOTE: This ALSO DELETES content from the bucket that is not needed
+      - run: 
+         name: Push to S3
+         command: /home/circleci/bin/aws s3 sync /tmp/workspace/public/ s3://$S3_DEPLOY_BUCKET --delete --quiet
+
+workflows:
+  version: 2
+
+  # Build and deploy workflow
+  build_deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build      
