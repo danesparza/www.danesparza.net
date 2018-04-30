@@ -1,28 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
+{{ define "main" }}
+    <div>
+        {{ range first 3 .Data.Pages }}
+            
+        <article class="post">
+            <header>
+                <h1><a href='{{ .Permalink }}'>{{ .Title }}</a></h1>
+                <div class="post-meta">Dan Esparza, {{ .Date.Format "January 2, 2006" }}</div>
+            </header>
+        
+            {{ .Content }}
+        </article>
 
-<head>
-    {{ template "chrome/head.html" . }}
+        {{ end }}
+    </div>
 
-    <title>{{ .Site.Title }}</title>
-</head>
-
-<body>
-
-    <div class="container">
-
-		{{ template "chrome/nav.html" . }}
-
-		<div>
-		{{ range first 3 .Data.Pages }}
-		    {{ .Render "summary"}}
-		{{ end }}
-		</div>
-
-		<div class="archive-prompt hidden-print row">
-		    <div class="col-md-12 text-center">
-		        <a class="btn btn-default btn-lg" href="/post">Read more posts in the archive</a>
-		    </div>
-		</div>
-
-{{ template "chrome/footer.html" }}
+    <div class="archive-prompt hidden-print row">
+        <div class="col-md-12 text-center">
+            <a class="btn btn-default btn-lg" href="/post">Read more posts in the archive</a>
+        </div>
+    </div>
+{{ end }}

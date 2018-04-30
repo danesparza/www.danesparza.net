@@ -1,69 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
+{{ define "main" }}
+    <!-- Article -->
+    <article class="post">
+        <header>
+          <h1>{{ .Title }}</a></h1>
+          <div class="post-meta">Dan Esparza, {{ .Date.Format "January 2, 2006" }}</div>
+        </header>
 
-<head>
-    {{ template "chrome/head.html" . }}
+        {{ .Content }}
+    </article>
 
-    <title>{{ .Title }} - {{ .Site.Title }}</title>
-</head>
-
-<body>
-
-    <div class="container">
-
-        {{ template "chrome/nav.html" . }}
-
-        <!-- Article -->
-        <article class="post">
-            <header>
-              <h1>{{ .Title }}</a></h1>
-              <div class="post-meta">Dan Esparza, {{ .Date.Format "January 2, 2006" }}</div>
-            </header>
-
-            {{ .Content }}
-        </article>
-
-        <!-- Next / previous articles -->
-        <div class="row articlenav hidden-print">
-            <div class="col-md-6">
-                <div class="pull-left">
-                    {{if .Prev }}
-                    <a href="{{.Prev.Permalink}}"><span class="glyphicon glyphicon-chevron-left"></span>{{.Prev.Title}}</a>
-                    {{end}}
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="pull-right">
-                    {{if .Next }}
-                    <a href="{{.Next.Permalink}}">{{.Next.Title}}<span class="glyphicon glyphicon-chevron-right"></span></a>
-                    {{end}}
-                </div>
+    <!-- Next / previous articles -->
+    <div class="row articlenav hidden-print">
+        <div class="col-md-6">
+            <div class="pull-left">
+                {{if .Prev }}
+                <a href="{{.Prev.Permalink}}"><span class="glyphicon glyphicon-chevron-left"></span>{{.Prev.Title}}</a>
+                {{end}}
             </div>
         </div>
-
-        <!-- Comments -->
-        <section class="comments hidden-print">
-            <div id="disqus_thread" aria-live="polite">
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <div class="col-md-6">
+            <div class="pull-right">
+                {{if .Next }}
+                <a href="{{.Next.Permalink}}">{{.Next.Title}}<span class="glyphicon glyphicon-chevron-right"></span></a>
+                {{end}}
             </div>
-        </section>
+        </div>
+    </div>
 
-        <script type="text/javascript">
-            var disqus_shortname = 'danesparza';
+    <!-- Comments -->
+    <section class="comments hidden-print">
+        <div id="disqus_thread" aria-live="polite">
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+    </section>
 
-            var disqus_developer = 1;
+    <script type="text/javascript">
+        var disqus_shortname = 'danesparza';
 
-            var disqus_identifier = '{{.Permalink}}/';
-            var disqus_url = '{{.Permalink}}/';
+        var disqus_developer = 1;
 
-            var disqus_script = 'embed.js';
+        var disqus_identifier = '{{.Permalink}}/';
+        var disqus_url = '{{.Permalink}}/';
 
-            (function () {
-                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
-                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-            }());
-        </script>
+        var disqus_script = 'embed.js';
 
-
-{{ template "chrome/footer.html" . }}
+        (function () {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = 'https://' + disqus_shortname + '.disqus.com/' + disqus_script;
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        }());
+    </script>
+{{ end }}
